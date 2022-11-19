@@ -42,14 +42,13 @@ dfE = df.loc[endangered_filter, :]
 #print(mylog_model.predict([[9.2, 64.7, -.01, 6.6]]))
 
 df_chars = df_chars[['claw_length_cm', 'weight_kg', 'sub_specie']]
-print(list(df_chars.columns.values))
-mylog_model = linear_model.LogisticRegression(tol = 0.1)
+mylog_model = linear_model.LogisticRegression(tol = 0.1, max_iter=5000)
 y = df_chars.values[:, 2]
 x = df_chars.values[:,0:2]
 
 mylog_model.fit(x, y)
 
-print(mylog_model.predict([[8.596, 3.487]]))
+print(mylog_model.predict([[5.856, 5.598]]))
 
 
 
