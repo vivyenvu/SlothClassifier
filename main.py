@@ -15,6 +15,13 @@ plt.show()
 endangered_filter = df['endangered'] == 'critically_endangered'
 dfE = df.loc[endangered_filter, :]
 print(dfE['endangered'].value_counts())
+
+least_concern = df.loc[df['endangered']=='least_concern', 'size_cm'].values
+vulnerable = df.loc[df['endangered']=='vulnerable', 'size_cm'].values
+critically_endangered = df.loc[df['endangered']=='critically_endangered', 'size_cm'].values
+plt.boxplot([least_concern, vulnerable, critically_endangered], labels=['Least concern','Vulnerable', 'Critically Endangered'])
+plt.show()
+
 # create deep copy of dataframe
 #df_endangered = df.copy(deep=True)
 #df_endangered.groupby(['endangered']).value_counts().plot(kind='pie')
