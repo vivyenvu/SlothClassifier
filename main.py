@@ -1,4 +1,5 @@
 import pandas as pd
+from pandas.plotting import scatter_matrix
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -8,6 +9,10 @@ from sklearn import linear_model
 df = pd.read_csv('sloth_data.csv')
 del df["Unnamed: 0"]
 print(df['endangered'].value_counts())
+
+scatter_matrix(df)
+plt.show()
+
 #print(df)
 df.hist()
 plt.show()
