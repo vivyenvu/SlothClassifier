@@ -16,10 +16,10 @@ print('This is df_chars')
 print(df_chars)
 
 scatter_matrix(df)
-plt.show()
+#plt.show()
 
 df.hist()
-plt.show()
+#plt.show()
 
 endangered_filter = df['endangered'] == 'critically_endangered'
 dfE = df.loc[endangered_filter, :]
@@ -29,7 +29,7 @@ least_concern = df.loc[df['endangered']=='least_concern', 'size_cm'].values
 vulnerable = df.loc[df['endangered']=='vulnerable', 'size_cm'].values
 critically_endangered = df.loc[df['endangered']=='critically_endangered', 'size_cm'].values
 plt.boxplot([least_concern, vulnerable, critically_endangered], labels=['Least concern','Vulnerable', 'Critically Endangered'])
-plt.show()
+#plt.show()
 
 #df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg', 'sub_specie']]
 #print(list(df_chars.columns.values))
