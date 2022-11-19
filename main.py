@@ -10,7 +10,10 @@ df = pd.read_csv('sloth_data.csv')
 del df["Unnamed: 0"]
 print(df['endangered'].value_counts())
 
-df_chars = df.drop(columns=['endangered', 'specie', 'sub_specie'])
+df_chars = df.drop(columns=['endangered', 'specie'])
+print('This is df')
+print(df)
+print('This is df_chars')
 print(df_chars)
 
 #sns.heatmap(df_chars, annot=True, cmap='Blues');
@@ -35,10 +38,11 @@ critically_endangered = df.loc[df['endangered']=='critically_endangered', 'size_
 plt.boxplot([least_concern, vulnerable, critically_endangered], labels=['Least concern','Vulnerable', 'Critically Endangered'])
 plt.show()
 
-
+df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg', 'sub_specie']]
+print(list(df_chars.columns.values))
 mylog_model = linear_model.LogisticRegression()
-y = df_chars.values[:, 3]
-x = df_chars.values[:,0:4]
+y = df_chars.values[:, 2]
+x = df_chars.values[:,0:2, 3:4]
 
 mylog_model.fit(x, y)
 
