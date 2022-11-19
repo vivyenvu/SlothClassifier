@@ -10,6 +10,14 @@ df = pd.read_csv('sloth_data.csv')
 del df["Unnamed: 0"]
 print(df['endangered'].value_counts())
 
+df_chars = df.drop(columns=['endangered', 'specie', 'sub_specie'])
+print(df_chars)
+
+sns.heatmap(df_chars, annot=True, cmap='Blues');
+plt.ylabel('Actual label')
+plt.xlabel('Predicted label')
+plt.show()
+
 scatter_matrix(df)
 plt.show()
 
