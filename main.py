@@ -13,10 +13,10 @@ print(df['endangered'].value_counts())
 df_chars = df.drop(columns=['endangered', 'specie', 'sub_specie'])
 print(df_chars)
 
-sns.heatmap(df_chars, annot=True, cmap='Blues');
-plt.ylabel('Actual label')
-plt.xlabel('Predicted label')
-plt.show()
+#sns.heatmap(df_chars, annot=True, cmap='Blues');
+#plt.ylabel('Actual label')
+#plt.xlabel('Predicted label')
+#plt.show()
 
 scatter_matrix(df)
 plt.show()
@@ -35,21 +35,12 @@ critically_endangered = df.loc[df['endangered']=='critically_endangered', 'size_
 plt.boxplot([least_concern, vulnerable, critically_endangered], labels=['Least concern','Vulnerable', 'Critically Endangered'])
 plt.show()
 
-# create deep copy of dataframe
-#df_endangered = df.copy(deep=True)
-#df_endangered.groupby(['endangered']).value_counts().plot(kind='pie')
-#df2 = df_endangered.plot.pie(figsize=(10,10), autopct='$.2f%%', subplots=True)
 
-#print(df_endangered)
-#df_endangered.plot(kind='pie', subplots=True)
+mylog_model = linear_model.LogisticRegression()
+y = df_chars.values[:, 3]
+x = df_chars.values[:,0:4]
 
-
-
-#mylog_model = linear_model.LogisticRegression()
-#y = df.to_numpy()
-#x = df.values[:,0:2]
-
-#mylog_model.fit(x, y)
+mylog_model.fit(x, y)
 
 #print(mylog_model.predict([[6,9]]))
 
