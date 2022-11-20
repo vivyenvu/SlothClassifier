@@ -35,18 +35,27 @@ df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg',
 print(list(df_chars.columns.values))
 mylog_model = linear_model.LogisticRegression(max_iter=250)
 y = df_chars.values[:200, 4]
-x = df_chars.values[:200,0:4]
+x = df_chars.values[:200, 0:4]
 
 mylog_model.fit(x, y)
 
 print(mylog_model.predict([[6.514, 64.194, 5.8, 6.635]]))
 
+
+mylog_model3 = linear_model.LogisticRegression(max_iter=5000)
+y3 = df_chars.values[:, 4]
+x3 = df_chars.values[:, 0:4]
+
+mylog_model3.fit(x3, y3)
+print(mylog_model3.predict([[6.514, 64.194, 5.8, 6.635]]))
+
+
 df_chars = df_chars[['claw_length_cm', 'weight_kg', 'sub_specie']]
 mylog_model2 = linear_model.LogisticRegression(max_iter=5000)
-y = df_chars.values[:, 2]
-x = df_chars.values[:,0:2]
+y2 = df_chars.values[:, 2]
+x2 = df_chars.values[:, :2]
 
-mylog_model2.fit(x, y)
+mylog_model2.fit(x2, y2)
 
 print(mylog_model2.predict([[6.514, 6.635]]))
 
