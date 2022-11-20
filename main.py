@@ -32,28 +32,14 @@ dfE = df.loc[endangered_filter, :]
 #plt.show()
 
 df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg', 'sub_specie']]
-print(list(df_chars.columns.values))
-mylog_model = linear_model.LogisticRegression(max_iter=250)
-y = df_chars.values[:200, 4]
-x = df_chars.values[:200, 0:4]
+mylog_model = linear_model.LogisticRegression(max_iter=5001, solver='newton-cg')
+y = df_chars.values[:, 4]
+x = df_chars.values[:, 0:4]
 x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=0.3)
-
-mylog_model.fit(x_train, y_train)
-
-print(mylog_model.predict([[6.514, 64.194, 5.8, 6.635]]))
-
-y_pred = mylog_model.predict(x_test)
-print(metrics.accuracy_score(y_test, y_pred))
-
-
-mylog_model3 = linear_model.LogisticRegression(max_iter=5001, solver='newton-cg')
-y3 = df_chars.values[:, 4]
-x3 = df_chars.values[:, 0:4]
-x_train3, x_test3, y_train3, y_test3 = model_selection.train_test_split(x3, y3, test_size=0.3)
-mylog_model3.fit(x3, y3)
-#print(mylog_model3.predict([[6.514, 64.194, 5.8, 6.635]]))
-y_pred3 = mylog_model3.predict(x_test3)
-print(metrics.accuracy_score(y_test3, y_pred3))
+mylog_model.fit(x, y)
+print(mylog_model.predict([[5.868, 49.0, 6.386, 1.407]]))
+y_pred = mylog_model.predict(x)
+print(metrics.accuracy_score(y, y_pred))
 
 
 
