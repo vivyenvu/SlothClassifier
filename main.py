@@ -25,9 +25,16 @@ dfE = df.loc[endangered_filter, :]
 least_concern = df.loc[df['endangered'] == 'least_concern', 'size_cm'].values
 vulnerable = df.loc[df['endangered'] == 'vulnerable', 'size_cm'].values
 critically_endangered = df.loc[df['endangered'] == 'critically_endangered', 'size_cm'].values
-plt.boxplot([least_concern, vulnerable, critically_endangered],
-            labels=['Least concern', 'Vulnerable', 'Critically Endangered'])
+
+fig = plt.figure(figsize=(6, 6))
+ax = fig.add_subplot(111)
+ax.boxplot([least_concern, vulnerable, critically_endangered],
+           labels=['Least concern', 'Vulnerable', 'Critically Endangered'])
+ax.set_ylabel('Size in cm')
 plt.show()
+
+
+
 
 # Reorder columns
 df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg', 'sub_specie']]
@@ -40,12 +47,13 @@ x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_s
 model.fit(x_train, y_train)
 y_pred = model.predict(x_test)
 
-# Calculate model accuracy
+# Calculate the model's accuracy
 score = metrics.accuracy_score(y_test, y_pred)
 print('Model accuracy is: ' + str(score))
 
 # UI
-print('This program will help you identify the subspecies of your sloth. Please enter values up to 3 decimal places (eg. 8.147) ')
+print(
+    'This program will help you identify the subspecies of your sloth. Please enter values up to 3 decimal places (eg. 8.147) ')
 while True:
     claw_input = input('What is the claw length in cm? ')
     try:
@@ -56,7 +64,7 @@ while True:
 
     size_input = input("What is the sloth's size in cm? ")
     try:
-        size_input=float(size_input)
+        size_input = float(size_input)
     except ValueError:
         print('Error: Invalid input. Restart program and try again. ')
         exit()
@@ -79,8 +87,3 @@ while True:
     print(model.predict(
         [[np.float64(claw_input), np.float64(size_input), np.float64(tail_input), np.float64(weight_input)]]))
     exit()
-
-
-
-
-
