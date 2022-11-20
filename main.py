@@ -36,14 +36,14 @@ print(list(df_chars.columns.values))
 mylog_model = linear_model.LogisticRegression(max_iter=250)
 y = df_chars.values[:200, 4]
 x = df_chars.values[:200, 0:4]
+x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=0.3)
 
-
-mylog_model.fit(x, y)
+mylog_model.fit(x_train, y_train)
 
 print(mylog_model.predict([[6.514, 64.194, 5.8, 6.635]]))
 
-y_pred = mylog_model.predict(x)
-print(metrics.accuracy_score(y, y_pred))
+y_pred = mylog_model.predict(x_test)
+print(metrics.accuracy_score(y_test, y_pred))
 
 
 #mylog_model3 = linear_model.LogisticRegression(max_iter=5000)
