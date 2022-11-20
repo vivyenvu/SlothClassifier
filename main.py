@@ -44,12 +44,43 @@ y_pred = model.predict(x_test)
 score = metrics.accuracy_score(y_test, y_pred)
 print('Model accuracy is: ' + str(score))
 
-print('This program will help you identify the subspecies of your sloth. Please enter values up to 3 decimal places. ')
-claw_input = input('What is the claw length in cm? ')
-size_input = input("What is the sloth's size in cm? ")
-tail_input = input('What is the tail length in cm? ')
-weight_input = input('What is the weight in kg? ')
+# UI
+print('This program will help you identify the subspecies of your sloth. Please enter values up to 3 decimal places (eg. 8.147) ')
+while True:
+    claw_input = input('What is the claw length in cm? ')
+    try:
+        claw_input = float(claw_input)
+    except ValueError:
+        print('Error: Invalid input. Restart program and try again. ')
+        exit()
 
-print('Thank you for all that information. Your sloth may be a: ')
+    size_input = input("What is the sloth's size in cm? ")
+    try:
+        size_input=float(size_input)
+    except ValueError:
+        print('Error: Invalid input. Restart program and try again. ')
+        exit()
 
-print(model.predict([[claw_input, size_input, tail_input, weight_input]]))
+    tail_input = input('What is the tail length in cm? ')
+    try:
+        tail_input = float(tail_input)
+    except ValueError:
+        print('Error: Invalid input. Restart program and try again. ')
+        exit()
+
+    weight_input = input('What is the weight in kg? ')
+    try:
+        weight_input = float(weight_input)
+    except ValueError:
+        print('Error: Invalid input. Restart program and try again. ')
+        exit()
+
+    print('Thank you for all that information. Your sloth may be a: ')
+    print(model.predict(
+        [[np.float64(claw_input), np.float64(size_input), np.float64(tail_input), np.float64(weight_input)]]))
+    exit()
+
+
+
+
+
