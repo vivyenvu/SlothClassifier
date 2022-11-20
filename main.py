@@ -33,9 +33,6 @@ ax.boxplot([least_concern, vulnerable, critically_endangered],
 ax.set_ylabel('Size in cm')
 plt.show()
 
-
-
-
 # Reorder columns
 df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg', 'sub_specie']]
 
