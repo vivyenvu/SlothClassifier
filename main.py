@@ -46,7 +46,7 @@ y_pred = mylog_model.predict(x_test)
 print(metrics.accuracy_score(y_test, y_pred))
 
 
-mylog_model3 = linear_model.LogisticRegression(max_iter=5000)
+mylog_model3 = linear_model.LogisticRegression(max_iter=5001, solver='newton-cg')
 y3 = df_chars.values[:, 4]
 x3 = df_chars.values[:, 0:4]
 x_train3, x_test3, y_train3, y_test3 = model_selection.train_test_split(x3, y3, test_size=0.3)
@@ -55,15 +55,5 @@ mylog_model3.fit(x3, y3)
 y_pred3 = mylog_model3.predict(x_test3)
 print(metrics.accuracy_score(y_test3, y_pred3))
 
-
-df_chars = df_chars[['claw_length_cm', 'weight_kg', 'sub_specie']]
-mylog_model2 = linear_model.LogisticRegression(max_iter=5000)
-y2 = df_chars.values[:, 2]
-x2 = df_chars.values[:, :2]
-x_train2, x_test2, y_train2, y_test2 = model_selection.train_test_split(x2, y2, test_size=0.3)
-mylog_model2.fit(x2, y2)
-#print(mylog_model2.predict([[6.514, 6.635]]))
-y_pred2 = mylog_model2.predict(x_test2)
-print(metrics.accuracy_score(y_test2, y_pred2))
 
 
