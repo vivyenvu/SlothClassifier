@@ -3,7 +3,7 @@ from pandas.plotting import scatter_matrix
 import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
-from sklearn import linear_model
+from sklearn import linear_model, metrics, model_selection
 
 df = pd.read_csv('sloth_data.csv')
 del df["Unnamed: 0"]
@@ -37,27 +37,28 @@ mylog_model = linear_model.LogisticRegression(max_iter=250)
 y = df_chars.values[:200, 4]
 x = df_chars.values[:200, 0:4]
 
+
 mylog_model.fit(x, y)
 
 print(mylog_model.predict([[6.514, 64.194, 5.8, 6.635]]))
 
-
-mylog_model3 = linear_model.LogisticRegression(max_iter=5000)
-y3 = df_chars.values[:, 4]
-x3 = df_chars.values[:, 0:4]
-
-mylog_model3.fit(x3, y3)
-print(mylog_model3.predict([[6.514, 64.194, 5.8, 6.635]]))
+y_pred = mylog_model.predict(x)
+print(metrics.accuracy_score(y, y_pred))
 
 
-df_chars = df_chars[['claw_length_cm', 'weight_kg', 'sub_specie']]
-mylog_model2 = linear_model.LogisticRegression(max_iter=5000)
-y2 = df_chars.values[:, 2]
-x2 = df_chars.values[:, :2]
+#mylog_model3 = linear_model.LogisticRegression(max_iter=5000)
+#y3 = df_chars.values[:, 4]
+#x3 = df_chars.values[:, 0:4]
+#mylog_model3.fit(x3, y3)
+#print(mylog_model3.predict([[6.514, 64.194, 5.8, 6.635]]))
 
-mylog_model2.fit(x2, y2)
 
-print(mylog_model2.predict([[6.514, 6.635]]))
+#df_chars = df_chars[['claw_length_cm', 'weight_kg', 'sub_specie']]
+#mylog_model2 = linear_model.LogisticRegression(max_iter=5000)
+#y2 = df_chars.values[:, 2]
+#x2 = df_chars.values[:, :2]
+#mylog_model2.fit(x2, y2)
+#print(mylog_model2.predict([[6.514, 6.635]]))
 
 
 
