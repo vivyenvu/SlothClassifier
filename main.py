@@ -36,7 +36,7 @@ df_chars = df_chars[['claw_length_cm', 'size_cm', 'tail_length_cm', 'weight_kg',
 model = linear_model.LogisticRegression(max_iter=5001, solver='newton-cg')
 y = df_chars.values[:, 4]
 x = df_chars.values[:, 0:4]
-x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=0.3)
+x_train, x_test, y_train, y_test = model_selection.train_test_split(x, y, test_size=0.5)
 model.fit(x_train, y_train)
 y_pred = model.predict(x_test)
 
